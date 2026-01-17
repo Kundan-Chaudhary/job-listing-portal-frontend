@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    alert("Google Login coming soon 🚀");
+    alert("Google Login coming soon");
   };
 
   return (
