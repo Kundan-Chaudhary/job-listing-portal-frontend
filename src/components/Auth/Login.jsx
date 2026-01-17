@@ -27,9 +27,9 @@ const Login = () => {
     }
   };
 
-  // 🔵 Google Login (future integration)
+  // Google Login
   const handleGoogleLogin = () => {
-    alert("Google Login coming soon 🚀");
+    alert("Google Login coming soon");
   };
 
   return (
