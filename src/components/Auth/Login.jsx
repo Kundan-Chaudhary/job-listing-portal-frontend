@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { loginUser } from "../../services/authService";
 import "./Auth.css";
 
@@ -26,12 +27,18 @@ const Login = () => {
     }
   };
 
+  // 🔵 Google Login (future integration)
+  const handleGoogleLogin = () => {
+    alert("Google Login coming soon 🚀");
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-card">
         <h1 className="auth-title">Job Listing Portal</h1>
         <h2>Login</h2>
 
+        {/* LOGIN FORM */}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <span className="input-icon">
@@ -65,8 +72,17 @@ const Login = () => {
             </span>
           </div>
 
-          <button type="submit">Sign in</button>
+          <button type="submit">Sign In</button>
         </form>
+
+        {/* DIVIDER */}
+        <div className="divider">or</div>
+
+        {/* GOOGLE LOGIN */}
+        <button className="google-btn" onClick={handleGoogleLogin}>
+          <FcGoogle />
+          <span>Continue with Google</span>
+        </button>
 
         <p>
           Don’t have an account? <Link to="/register">Register here</Link>

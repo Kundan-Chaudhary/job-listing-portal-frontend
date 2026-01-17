@@ -8,6 +8,7 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
 import { registerUser } from "../../services/authService";
 import "./Auth.css";
 
@@ -17,7 +18,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "", // 👈 NEW
+    phone: "",
     password: "",
   });
 
@@ -43,13 +44,18 @@ const Register = () => {
     }
   };
 
+  // 🔵 Google Register (future integration)
+  const handleGoogleRegister = () => {
+    alert(`Google Sign Up as ${role} coming soon 🚀`);
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-card">
         <h1 className="auth-title">Job Listing Portal</h1>
         <h2>Register</h2>
 
-        {/* Candidate / Employer Toggle */}
+        {/* ROLE TOGGLE */}
         <div className="role-toggle">
           <button
             type="button"
@@ -67,6 +73,7 @@ const Register = () => {
           </button>
         </div>
 
+        {/* FORM */}
         <form onSubmit={handleSubmit}>
           {/* Username */}
           <div className="input-group">
@@ -96,7 +103,7 @@ const Register = () => {
             />
           </div>
 
-          {/* Phone Number */}
+          {/* Phone */}
           <div className="input-group">
             <span className="input-icon">
               <FaPhoneAlt />
@@ -130,8 +137,17 @@ const Register = () => {
             </span>
           </div>
 
-          <button type="submit">Sign up</button>
+          <button type="submit">Sign Up</button>
         </form>
+
+        {/* DIVIDER */}
+        <div className="divider">or</div>
+
+        {/* GOOGLE REGISTER */}
+        <button className="google-btn" onClick={handleGoogleRegister}>
+          <FcGoogle />
+          <span>Continue with Google</span>
+        </button>
 
         <p>
           Already have an account? <Link to="/">Login here</Link>
