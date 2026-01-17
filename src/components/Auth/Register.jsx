@@ -44,7 +44,6 @@ const Register = () => {
     }
   };
 
-  // 🔵 Google Register (future integration)
   const handleGoogleRegister = () => {
     alert(`Google Sign Up as ${role} coming soon 🚀`);
   };
