@@ -1,15 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaUser,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaPhoneAlt,
+} from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
 import { registerUser } from "../../services/authService";
 import "./Auth.css";
 
 const Register = () => {
+  const [role, setRole] = useState("candidate");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "", // 👈 NEW
     password: "",
   });
 
@@ -21,16 +29,18 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const finalData = {
+      ...formData,
+      role,
+    };
+
     try {
-      await registerUser(formData);
+      await registerUser(finalData);
       alert("Registration Successful");
     } catch {
       alert("Registration Failed");
     }
-  };
-
-  const handleGoogleRegister = () => {
-    alert("Google registration coming soon 🚀");
   };
 
   return (
@@ -39,7 +49,26 @@ const Register = () => {
         <h1 className="auth-title">Job Listing Portal</h1>
         <h2>Register</h2>
 
+        {/* Candidate / Employer Toggle */}
+        <div className="role-toggle">
+          <button
+            type="button"
+            className={role === "candidate" ? "active" : ""}
+            onClick={() => setRole("candidate")}
+          >
+            Candidate
+          </button>
+          <button
+            type="button"
+            className={role === "employer" ? "active" : ""}
+            onClick={() => setRole("employer")}
+          >
+            Employer
+          </button>
+        </div>
+
         <form onSubmit={handleSubmit}>
+          {/* Username */}
           <div className="input-group">
             <span className="input-icon">
               <FaUser />
@@ -53,6 +82,7 @@ const Register = () => {
             />
           </div>
 
+          {/* Email */}
           <div className="input-group">
             <span className="input-icon">
               <MdEmail />
@@ -66,6 +96,21 @@ const Register = () => {
             />
           </div>
 
+          {/* Phone Number */}
+          <div className="input-group">
+            <span className="input-icon">
+              <FaPhoneAlt />
+            </span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Password */}
           <div className="input-group">
             <span className="input-icon">
               <FaLock />
@@ -85,16 +130,8 @@ const Register = () => {
             </span>
           </div>
 
-          <button type="submit">Register</button>
+          <button type="submit">Sign up</button>
         </form>
-
-        {/* Google register */}
-        <div className="divider">or</div>
-
-        <button className="google-btn" onClick={handleGoogleRegister}>
-          <FcGoogle />
-          <span>Continue with Google</span>
-        </button>
 
         <p>
           Already have an account? <Link to="/">Login here</Link>

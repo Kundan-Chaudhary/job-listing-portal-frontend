@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { loginUser } from "../../services/authService";
 import "./Auth.css";
 
@@ -25,10 +24,6 @@ const Login = () => {
     } catch {
       alert("Login Failed");
     }
-  };
-
-  const handleGoogleLogin = () => {
-    alert("Google login coming soon 🚀");
   };
 
   return (
@@ -66,20 +61,12 @@ const Login = () => {
               className="input-icon right"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
 
           <button type="submit">Sign in</button>
         </form>
-
-        {/* Google login */}
-        <div className="divider">or</div>
-
-        <button className="google-btn" onClick={handleGoogleLogin}>
-          <FcGoogle />
-          <span>Continue with Google</span>
-        </button>
 
         <p>
           Don’t have an account? <Link to="/register">Register here</Link>
